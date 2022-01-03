@@ -11,11 +11,13 @@ const IndexPage = () => {
   const [pfs, setPfs] = useState(0)
 
   const getData = async () => {
-    const heroTable = await base('Table')
-      .select({})
+    const data = await base('Table')
+      .select({
+        sort: [{ field: 'id', direction: 'desc' }],
+      })
       .firstPage()
       .catch(err => console.error(err))
-    setUserData(heroTable)
+    setUserData(data)
   }
   useEffect(() => {
     getData()
