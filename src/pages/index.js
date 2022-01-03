@@ -66,13 +66,22 @@ const IndexPage = () => {
   const addPfs = nb => {
     setPfs(nb + pfs)
   }
+  const difference = () => {
+    if (totalLudo > totalNico) {
+      return <p>Ludo: + {totalLudo - totalNico}</p>
+    }
+    if (totalNico > tempLudo) {
+      return <p>nico + {totalNico - totalLudo}</p>
+    }
+  }
 
   return (
     <Wrapper>
-      <h1>Nico Ludo</h1>
-      <h2>Calculatrice Foe</h2>
+      <h1>Calculatrice Foe</h1>
+      <h2>Nico Ludo</h2>
+      <p>{difference}</p>
+      {difference()}
       <div>
-        <p>Ajout :</p>
         <button onClick={() => addPfs(10)}>+10</button>
         <button onClick={() => addPfs(1)}>+1</button>
         <input type='text' placeholder={pfs} />
@@ -102,7 +111,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 450px;
+  max-width: 325px;
   width: 100%;
   margin: 0 auto;
   button {

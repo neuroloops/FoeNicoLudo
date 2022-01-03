@@ -8,11 +8,14 @@ const Historic = ({ Name, data }) => {
         const { fields: user } = dataMap
 
         let tempDate = Date.parse(user.created)
-        const newDate = new Date(tempDate).toLocaleString('fr-FR')
+        const newDate = new Date(tempDate).toLocaleString('fr-FR', {
+          day: '2-digit',
+          month: '2-digit',
+        })
         if (user.name === Name) {
           return (
             <li key={user.id} className='historique'>
-              <p>{user.number}</p>
+              <p className='number'>{user.number}</p>
               <p className='date'>{newDate}</p>
             </li>
           )
@@ -27,7 +30,7 @@ export default Historic
 const Ul = styled.ul`
   list-style-type: none;
   padding: 0;
-  width: 200px;
+  width: 100px;
   .date {
     font-size: 0.8em;
   }
@@ -36,5 +39,9 @@ const Ul = styled.ul`
     justify-content: space-around;
     height: 1.5rem;
     align-items: center;
+  }
+  .number {
+    width: 30px;
+    text-align: right;
   }
 `
