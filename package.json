@@ -17,9 +17,9 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "airtable": "^0.11.1",
     "gatsby": "^4.4.0",
     "gatsby-plugin-emotion": "^7.4.0",
-    "gatsby-source-airtable": "^2.2.1",
     "gatsby-source-filesystem": "^4.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
