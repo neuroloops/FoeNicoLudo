@@ -31,9 +31,11 @@ const Ul = styled.ul`
   list-style-type: none;
   padding: 0;
   width: 100px;
+
   .date {
     font-size: 0.8em;
   }
+
   li {
     display: flex;
     justify-content: space-around;

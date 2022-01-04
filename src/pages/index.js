@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import base from '../components/Airtable'
 import { useEffect, useState } from 'react'
 import Historic from '../components/Historic'
+import '../assets/main.css'
 
 const IndexPage = () => {
   const [userData, setUserData] = useState([])
@@ -67,20 +68,19 @@ const IndexPage = () => {
     setPfs(nb + pfs)
   }
   const difference = () => {
-    if (totalLudo > totalNico) {
-      return <p>Ludo: + {totalLudo - totalNico}</p>
-    }
-    if (totalNico > tempLudo) {
-      return <p>nico + {totalNico - totalLudo}</p>
-    }
+    return totalLudo > totalNico ? (
+      <>Ludo: + {totalLudo - totalNico}</>
+    ) : (
+      <>nico: + {totalNico - totalLudo}</>
+    )
   }
 
   return (
     <Wrapper>
-      <h1>Calculatrice Foe</h1>
-      <h2>Nico Ludo</h2>
-      <p>{difference}</p>
-      {difference()}
+      <h1>Calculatrice FOE</h1>
+
+      <p>{difference()}</p>
+
       <div>
         <button onClick={() => addPfs(10)}>+10</button>
         <button onClick={() => addPfs(1)}>+1</button>
@@ -108,13 +108,65 @@ const IndexPage = () => {
 export default IndexPage
 
 const Wrapper = styled.div`
+  background: rgba(227, 212, 169, 1);
+  background: -moz-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(227, 212, 169, 1) 0%,
+    rgba(227, 212, 169, 1) 24%,
+    rgba(177, 140, 88, 1) 100%
+  );
+  background: -webkit-gradient(
+    radial,
+    center center,
+    0px,
+    center center,
+    100%,
+    color-stop(0%, rgba(227, 212, 169, 1)),
+    color-stop(24%, rgba(227, 212, 169, 1)),
+    color-stop(100%, rgba(177, 140, 88, 1))
+  );
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(227, 212, 169, 1) 0%,
+    rgba(227, 212, 169, 1) 24%,
+    rgba(177, 140, 88, 1) 100%
+  );
+  background: -o-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(227, 212, 169, 1) 0%,
+    rgba(227, 212, 169, 1) 24%,
+    rgba(177, 140, 88, 1) 100%
+  );
+  background: -ms-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(227, 212, 169, 1) 0%,
+    rgba(227, 212, 169, 1) 24%,
+    rgba(177, 140, 88, 1) 100%
+  );
+  background: radial-gradient(
+    ellipse at center,
+    rgba(227, 212, 169, 1) 0%,
+    rgba(227, 212, 169, 1) 24%,
+    rgba(177, 140, 88, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3d4a9', endColorstr='#b18c58', GradientType=1 );
+
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 325px;
-  width: 100%;
+  min-width: 215px;
+  width: 90%;
   margin: 0 auto;
+  border: 5px double #201002;
   button {
+    color: #f2d59e;
+    font-weight: bold;
+    background: #975322;
     height: 30px;
     margin: 0 5px;
   }
@@ -130,8 +182,20 @@ const Wrapper = styled.div`
     > div {
       margin-top: 10px;
       border: 1px solid #ccc;
+      background: #ece0be;
+      border-radius: 5px;
+      margin-bottom: 10px;
     }
   }
+  h1 {
+    text-align: center;
+    background: #622317;
+    color: #f3d6a0;
+    border: 1px solid #8c6747;
+    margin: 0;
+    width: 100%;
+  }
+
   h3 {
     text-align: center;
   }
