@@ -87,7 +87,7 @@ const IndexPage = () => {
         <input
           type='text'
           placeholder={pfs}
-          onChange={e => setPfs(e.target.value)}
+          onChange={e => setPfs(+e.target.value)}
         />
         <button onClick={() => createData(pfs)}>Valider</button>
       </div>
