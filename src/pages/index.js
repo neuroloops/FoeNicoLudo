@@ -1,15 +1,15 @@
-import * as React from 'react'
-import styled from '@emotion/styled'
-import base from '../components/Airtable'
-import { useEffect, useState } from 'react'
-import Historic from '../components/Historic'
-import '../assets/main.css'
+import * as React from 'react';
+import styled from '@emotion/styled';
+import base from '../components/Airtable';
+import { useEffect, useState } from 'react';
+import Historic from '../components/Historic';
+import '../assets/main.css';
 
 const IndexPage = () => {
-  const [userData, setUserData] = useState([])
-  const [totalNico, setTotalNico] = useState()
-  const [totalLudo, setTotalLudo] = useState(0)
-  const [pfs, setPfs] = useState(0)
+  const [userData, setUserData] = useState([]);
+  const [totalNico, setTotalNico] = useState();
+  const [totalLudo, setTotalLudo] = useState(0);
+  const [pfs, setPfs] = useState(0);
 
   const getData = async () => {
     const data = await base('Table')
@@ -17,12 +17,12 @@ const IndexPage = () => {
         sort: [{ field: 'id', direction: 'desc' }],
       })
       .firstPage()
-      .catch(err => console.error(err))
-    setUserData(data)
-  }
+      .catch(err => console.error(err));
+    setUserData(data);
+  };
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   const createData = async nb => {
     base('Table').create(
@@ -37,43 +37,43 @@ const IndexPage = () => {
 
       function (err, records) {
         if (err) {
-          console.error(err)
-          return
+          console.error(err);
+          return;
         }
         records.forEach(function (record) {
-          console.log(record.getId())
-        })
+          console.log(record.getId());
+        });
       }
-    )
-    setPfs(0)
-    getData()
-  }
+    );
+    setPfs(0);
+    getData();
+  };
 
-  let tempLudo = 0
-  let tempNico = 0
+  let tempLudo = 0;
+  let tempNico = 0;
 
   useEffect(() => {
     userData.forEach(data => {
-      const { fields: user } = data
+      const { fields: user } = data;
       user.name === 'Nico'
         ? (tempNico += user.number)
-        : (tempLudo += user.number)
+        : (tempLudo += user.number);
 
-      setTotalNico(tempNico)
-      setTotalLudo(tempLudo)
-    })
-  }, [userData])
+      setTotalNico(tempNico);
+      setTotalLudo(tempLudo);
+    });
+  }, [userData]);
 
   const addPfs = nb => {
-    setPfs(nb + pfs)
-  }
+    setPfs(nb + pfs);
+  };
   const difference = () => {
     return totalLudo > totalNico ? (
       <>Ludo: + {totalLudo - totalNico}</>
     ) : (
       <>nico: + {totalNico - totalLudo}</>
-    )
-  }
+    );
+  };
 
   return (
     <Wrapper>
@@ -84,7 +84,11 @@ const IndexPage = () => {
       <div>
         <button onClick={() => addPfs(10)}>+10</button>
         <button onClick={() => addPfs(1)}>+1</button>
-        <input type='text' placeholder={pfs} />
+        <input
+          type='text'
+          placeholder={pfs}
+          onChange={e => setPfs(e.target.value)}
+        />
         <button onClick={() => createData(pfs)}>Valider</button>
       </div>
       <div className='body'>
@@ -102,10 +106,10 @@ const IndexPage = () => {
         </div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 const Wrapper = styled.div`
   background: rgba(227, 212, 169, 1);
@@ -199,4 +203,4 @@ const Wrapper = styled.div`
   h3 {
     text-align: center;
   }
-`
+`;
